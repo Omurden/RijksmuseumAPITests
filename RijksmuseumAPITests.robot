@@ -82,3 +82,5 @@ Retrieve Object Details Without API Key
     Create Session    Rijksmuseum    ${BASE_URL}
     ${response}=      GET On Session    Rijksmuseum    url=/${LANGUAGE}/collection/${OBJECT_ID}  expected_status=401
     Should Be Equal As Numbers    ${response.status_code}    401
+
+#dummy commit
