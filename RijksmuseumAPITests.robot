@@ -59,3 +59,26 @@ Retrieve Invalid Object Details
     Log    ${response.json()}
     ${art_object}=    Get From Dictionary    ${response.json()}    artObject
     Should Be Equal    ${art_object}     ${None}
+
+Retrieve Collections Without Query
+    [Documentation]    Test to retrieve collections without a query parameter
+    Create Session    Rijksmuseum    ${BASE_URL}
+    ${params}=        Create Dictionary    key=${API_KEY}
+    ${response}=      GET On Session    Rijksmuseum    url=/${LANGUAGE}/collection    params=${params}
+    Should Be Equal As Numbers    ${response.status_code}    200
+    Log    ${response.json()}
+    ${art_objects}=    Get From Dictionary    ${response.json()}    artObjects
+    Should Not Be Empty    ${art_objects}
+
+Retrieve Collections With Invalid API Key
+    [Documentation]    Test to retrieve collections with an invalid API key
+    Create Session    Rijksmuseum    ${BASE_URL}
+    ${params}=        Create Dictionary    key=INVALID_KEY    q=Rembrandt
+    ${response}=      GET On Session    Rijksmuseum    url=/${LANGUAGE}/collection    params=${params}  expected_status=401
+    Should Be Equal As Numbers    ${response.status_code}    401
+
+Retrieve Object Details Without API Key
+    [Documentation]    Test to retrieve details of an object without an API key
+    Create Session    Rijksmuseum    ${BASE_URL}
+    ${response}=      GET On Session    Rijksmuseum    url=/${LANGUAGE}/collection/${OBJECT_ID}  expected_status=401
+    Should Be Equal As Numbers    ${response.status_code}    401
