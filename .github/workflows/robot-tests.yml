@@ -2,9 +2,9 @@ name: Run Robot Framework Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main, 'feature/*', 'bugfix/*' ]
   pull_request:
+    branches: [ main ]
 
 jobs:
   test:
@@ -23,5 +23,14 @@ jobs:
           pip install robotframework
           pip install robotframework-requests
 
-      - name: Run Robot Framework tests
+      - name: Run tests
         run: robot RijksmuseumAPITests.robot
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: RobotReports
+          path: |
+            output.xml
+            log.html
+            report.html
