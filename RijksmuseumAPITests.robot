@@ -32,6 +32,9 @@ Retrieve Object Details
     Dictionary Should Contain Key    ${art_object}    objectNumber
     ${object_number}=    Get From Dictionary    ${art_object}    objectNumber
     Should Be Equal    ${object_number}    ${OBJECT_ID}
+    ${title}=    Get From Dictionary    ${art_object}    title
+    Log    Title in Dutch: ${title}
+    Should Contain    ${title}    The Night Watch  
 
 Retrieve Object Details in Dutch
     [Documentation]    Test to retrieve details of a specific art object in Dutch
