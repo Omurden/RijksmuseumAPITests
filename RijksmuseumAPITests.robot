@@ -81,4 +81,4 @@ Retrieve Object Details Without API Key
     [Documentation]    Test to retrieve details of an object without an API key
     Create Session    Rijksmuseum    ${BASE_URL}
     ${response}=      GET On Session    Rijksmuseum    url=/${LANGUAGE}/collection/${OBJECT_ID}  expected_status=401
-    Should Be Equal As Numbers    ${response.status_code}    405
+    Should Be Equal As Numbers    ${response.status_code}    401
