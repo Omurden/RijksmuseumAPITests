@@ -3,7 +3,7 @@ Library           RequestsLibrary
 Library           Collections
 
 *** Variables ***
-${API_KEY}        0fiuZFh4
+${API_KEY}        ${ENV:API_KEY}
 ${BASE_URL}       https://www.rijksmuseum.nl/api
 ${LANGUAGE}       en
 ${OBJECT_ID}      SK-C-5
